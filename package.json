@@ -19,7 +19,15 @@
     "verbose": true,
     "testURL": "http://localhost/"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@testing-library/dom": "^7.20.0",
+    "@testing-library/user-event": "*",
+    "core-js": "*",
+    "keycode": "*",
+    "lodash": "*",
+    "prettier": "*",
+    "regenerator-runtime": "*"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",

@@ -1,20 +1,54 @@
-# webpack-package
+*Эта задача не сложная алгоритмически, но довольно объемная. На решение потребуется время и это хорошая прокачка*
 
-[![github action status](https://github.com/hexlet-boilerplates/webpack-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/webpack-package/actions)
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/webpack-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/webpack-package)
+Некоторые интерфейсы допускают редактирование "по месту" (in-place). Это значит что для обновления значений каких-то данных не нужно переходить на отдельную страницу редактирования, достаточно кликнуть на сам элемент (или кнопку рядом с ним) как появится форма для изменения конкретно этого значения.
 
-## Setup
+В данной практике нужно построить именно такой интерфейс. Он работает по следующему принципу. Контейнер внутри которого находятся данные для редактирования, помечается специальным аттрибутом: `data-editable-target`. Значением этого атрибута является имя поля. В нашем примере это *name* и *email* (исходник доступен в public/index.html). Начальный HTML выглядит так:
 
-```sh
-make install
+```
+<div data-editable-target="name"><i>name</i></div>
+<div data-editable-target="email"><i>email</i></div>
+
 ```
 
-## Run
+Когда происходит клик на этом элементе, то он заменяется на форму:
 
-```sh
-make develop
+```
+<div data-editable-target="name">
+  <form>
+    <!-- С точки зрения хорошего UX нужно фокусироваться (это позволяет использовать клавиатуру сразу) на этом инпуте и выделять текст внутри него -->
+    <!-- Исключение составляет ситуация, когда поле пустое (но отражается текст выделенный курсивом как в примере выше) -->
+    <input type="text" name="name">
+    <input type="submit" value="Save">
+  </form>
+</div>
+
 ```
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package)
+Затем пользователь может изменить значение и сохранить его. Повторный клик снова открывает форму для редактирования, в которой окажется то значение, которое вбил пользователь.
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
+Предположим что мы набрали значение "Cat". Тогда после отправки формы этот див станет таким:
+
+```
+<div data-editable-target="name">
+  Cat
+</div>
+
+```
+
+Если значение стирается, то тогда текст меняется на первоначальный (и добавляется курсив), такой какой он был до любых изменений:
+
+```
+<div data-editable-target="name"><i>name</i></div>
+<div data-editable-target="email"><i>email</i></div>
+
+```
+
+### src/application.js
+
+Экспортируйте функцию по умолчанию, которая реализует всю необходимую логику. По необходимости создайте дополнительные функции на уровне модуля.
+
+### Подсказки
+
+-   Каждое поле обрабатывается независимо и каждому понадобится свое собственное состояние.
+-   Код отвечающий за изменение DOM не может менять состояние.
+-   Обработчики не могут напрямую менять DOM. Это делает функция `render`.
