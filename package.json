@@ -19,7 +19,16 @@
     "verbose": true,
     "testURL": "http://localhost/"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "*",
+    "on-change": "*",
+    "timer-promise": "*",
+    "js-polyfills": "*",
+    "core-js": "*",
+    "regenerator-runtime": "*",
+    "i18next": "*",
+    "prettier": "*"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",

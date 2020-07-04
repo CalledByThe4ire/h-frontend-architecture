@@ -1,20 +1,74 @@
-# webpack-package
+В этой задаче вам предстоит реализовать грид. В интерфейсах так называется список выведенный в табличном виде, позволяющий выполнять разные действия над ним, например, сортировку.
 
-[![github action status](https://github.com/hexlet-boilerplates/webpack-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/webpack-package/actions)
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/webpack-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/webpack-package)
+В качестве данных нужно взять объект `document.location`, который содержит в себе информацию о браузере. Пример неполного вывода:
 
-## Setup
+| Name (Asc) | Value (Unsorted) |
+| --- | --- |
+| host | localhost |
+| pathname | / |
 
-```sh
-make install
+Вывести нужно только те свойства, которые удовлетворяют условиям:
+
+-   Не функции
+-   Не объекты
+-   Не пустые
+
+По умолчанию вывод происходит в алфавитном порядке по имени свойства. Этот порядок можно менять кликом по заголовку. Если происходит клик на другой столбец, то происходит сортировка по нему (в порядке возрастания). Повторный клик меняет порядок сортировки.
+
+```
+<div class="container m-3">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th><a href="">Name (Asc)</a></th>
+                <th><a href="">Value (Unsorted)</a></th>
+            </tr>
+            <tr>
+                <td>host</td>
+                <td>localhost</td>
+            </tr>
+            <tr>
+                <td>hostname</td>
+                <td>localhost</td>
+            </tr>
+            <tr>
+                <td>href</td>
+                <td>http://localhost/</td>
+            </tr>
+            <tr>
+                <td>origin</td>
+                <td>http://localhost</td>
+            </tr>
+            <tr>
+                <td>pathname</td>
+                <td>/</td>
+            </tr>
+            <tr>
+                <td>protocol</td>
+                <td>http:</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 ```
 
-## Run
+Рядом с каждым заголовком, в скобках, указано состояние столбца. Всего их три:
 
-```sh
-make develop
-```
+-   Не отсортирован
+-   Прямой
+-   Обратный
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package)
+В один момент времени сортировка может быть выполнена только по одному столбцу.
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
+src/application.js
+------------------
+
+Экспортируйте функцию по умолчанию, которая реализует всю необходимую логику. Тексты должны подставляться через библиотеку *i18next*.
+
+Подсказки
+---------
+
+-   Сравнение строк [localeCompare](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)
+-   Переводы можно вкладывать друг в друга: `I18n.t('key', { value: I18n.t('another key') })`
+-   Получить все свойства объекта (включая то что наследуется) можно через цикл *for..in*
