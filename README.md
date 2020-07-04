@@ -1,20 +1,10 @@
-# webpack-package
+src/application.js
+------------------
 
-[![github action status](https://github.com/hexlet-boilerplates/webpack-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/webpack-package/actions)
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/webpack-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/webpack-package)
+Реализуйте js часть компонента *list-group* бутстрапа. Посмотреть пример работы можно здесь <https://getbootstrap.com/docs/4.1/components/list-group/#javascript-behavior>
 
-## Setup
+Задача в том чтобы добавить js код, который оживляет переключение.
 
-```sh
-make install
-```
+Реализуйте задание используя архитектуру MVC.
 
-## Run
-
-```sh
-make develop
-```
-
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package)
-
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
+Код должен работать даже в том случае если на странице есть несколько компонентов *list-group*.
