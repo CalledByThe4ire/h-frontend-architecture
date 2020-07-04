@@ -1,20 +1,103 @@
-# webpack-package
+*Эта задача не сложная алгоритмически, но довольно объемная. На решение потребуется время и это хорошая прокачка*
 
-[![github action status](https://github.com/hexlet-boilerplates/webpack-package/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/webpack-package/actions)
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/webpack-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/webpack-package)
+В этой задаче вам предстоит сделать список задач похожий на [Reminders из MacOS](https://bit.ly/38GX3wI). Reminder позволяет планировать задачи и создавать списки задач. По умолчанию, в нашей реализации сразу должен быть создан канал General. Начальный HTML доступен в *public/index.html*. После инициализации js он становится таким (туда добавляется General):
 
-## Setup
+```
+<div class="row">
+  <div class="col-2">
+    <h3>Lists</h3>
+    <div data-container="lists"><ul><li><b>General</b></li></ul></div>
+    <form data-container="new-list-form">
+      <input type="text" class="form-control mb-2" name="name">
+      <input type="submit" class="btn btn-primary btn-sm" value="Add">
+    </form>
+  </div>
+  <div class="col-10">
+    <h3>Tasks</h3>
+    <form class="form-inline" data-container="new-task-form">
+      <input type="text" class="form-control mr-2" name="name">
+      <input type="submit" class="btn btn-primary" value="Add">
+    </form>
+    <div data-container="tasks">
+    </div>
+  </div>
+</div>
 
-```sh
-make install
 ```
 
-## Run
+После добавления первой задачи в канал General:
 
-```sh
-make develop
+```
+<div class="row">
+  <div class="col-2">
+    <h3>Lists</h3>
+    <div data-container="lists"><ul><li><b>General</b></li></ul></div>
+    <form data-container="new-list-form">
+      <input type="text" class="form-control mb-2" name="name">
+      <input type="submit" class="btn btn-primary btn-sm" value="Add">
+    </form>
+  </div>
+  <div class="col-10">
+    <h3>Tasks</h3>
+    <form class="form-inline" data-container="new-task-form">
+      <input type="text" class="form-control mr-2" name="name">
+      <input type="submit" class="btn btn-primary" value="Add">
+    </form>
+    <div data-container="tasks"><ul><li>My First Task</li></ul></div>
+  </div>
+</div>
+
 ```
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package)
+После создания нового канала (но до переключения на него):
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=webpack-package).
+```
+<div class="row">
+  <div class="col-2">
+    <h3>Lists</h3>
+    <div data-container="lists"><ul><li><b>General</b></li><li><a href="#random">Random</a></li></ul></div>
+    <form data-container="new-list-form">
+      <input type="text" class="form-control mb-2" name="name">
+      <input type="submit" class="btn btn-primary btn-sm" value="Add">
+    </form>
+  </div>
+  <div class="col-10">
+    <h3>Tasks</h3>
+    <form class="form-inline" data-container="new-task-form">
+      <input type="text" class="form-control mr-2" name="name">
+      <input type="submit" class="btn btn-primary" value="Add">
+    </form>
+    <div data-container="tasks"><ul><li>My First Task</li></ul></div>
+  </div>
+</div>
+
+```
+
+После переключения на канал Random:
+
+```
+<div class="row">
+  <div class="col-2">
+    <h3>Lists</h3>
+    <div data-container="lists"><ul><li><a href="#general">General</a></li><li><b>Random</b></li></ul></div>
+    <form data-container="new-list-form">
+      <input type="text" class="form-control mb-2" name="name">
+      <input type="submit" class="btn btn-primary btn-sm" value="Add">
+    </form>
+  </div>
+  <div class="col-10">
+    <h3>Tasks</h3>
+    <!-- Форма добавления задачи добавляет задачу в текущий активный канал -->
+    <form class="form-inline" data-container="new-task-form">
+      <input type="text" class="form-control mr-2" name="name">
+      <input type="submit" class="btn btn-primary" value="Add">
+    </form>
+    <div data-container="tasks"></div>
+  </div>
+</div>
+
+```
+
+### src/application.js
+
+Экспортируйте функцию по умолчанию, которая реализует всю необходимую логику.

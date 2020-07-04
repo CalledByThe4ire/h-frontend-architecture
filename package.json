@@ -19,7 +19,13 @@
     "verbose": true,
     "testURL": "http://localhost/"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "*",
+    "regenerator-runtime": "*",
+    "core-js": "*",
+    "keycode": "*",
+    "prettier": "*"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
